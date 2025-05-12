@@ -1,0 +1,761 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Studiu_Individual_1
+{
+    public partial class AdminMenu : Form
+    {
+        public AdminMenu()
+        {
+            InitializeComponent();
+
+
+            Utilizatori_bt.MouseEnter += Buton_MouseEnter;
+            Utilizatori_bt.MouseLeave += Buton_MouseLeave;
+
+            Medici_bt.MouseEnter += Buton_MouseEnter;
+            Medici_bt.MouseLeave += Buton_MouseLeave;
+
+            BR_bt.MouseEnter += Buton_MouseEnter;
+            BR_bt.MouseLeave += Buton_MouseLeave;
+
+            Filiale_bt.MouseEnter += Buton_MouseEnter;
+            Filiale_bt.MouseLeave += Buton_MouseLeave;
+
+            Acces_bt.MouseEnter += Buton_MouseEnter;
+            Acces_bt.MouseLeave += Buton_MouseLeave;
+        }
+
+        private void Buton_MouseEnter(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null)
+            {
+                btn.Width += 10;
+                btn.Height += 10;
+                btn.Font = new Font(btn.Font.FontFamily, btn.Font.Size + 1, FontStyle.Bold);
+            }
+        }
+
+        private void Buton_MouseLeave(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            if (btn != null)
+            {
+                btn.Width -= 10;
+                btn.Height -= 10;
+                btn.Font = new Font(btn.Font.FontFamily, btn.Font.Size - 1, FontStyle.Regular);
+            }
+        }
+
+        private void ShowMainMenu()
+        {
+            Utilizatori_bt.Visible = true;
+            Medici_bt.Visible = true;
+            Filiale_bt.Visible = true;
+            Acces_bt.Visible = true;
+            BR_bt.Visible = true;
+            Repromed.Visible = true;
+        }
+
+        private void HideButton()
+        {
+            Utilizatori_bt.Visible = false;
+            Medici_bt.Visible = false;
+            Filiale_bt.Visible = false;
+            Acces_bt.Visible = false;
+            BR_bt.Visible = false;
+            Repromed.Visible = false;
+        }
+
+
+        private Button CreateBackButton()
+        {
+            Button backButton = new Button();
+            backButton.Text = "Înapoi";
+            backButton.Height = 40;
+            backButton.Width = 100;
+            backButton.BackColor = Color.LightGray;
+            backButton.Location = new Point(20, this.ClientSize.Height - 60);
+            backButton.Click += (s, e) => {
+                Controls.Clear();
+                Controls.Add(Utilizatori_bt);
+                Controls.Add(Medici_bt);
+                Controls.Add(Filiale_bt);
+                Controls.Add(Acces_bt);
+                Controls.Add(BR_bt);
+                Controls.Add(Repromed);
+                ShowMainMenu();
+            };
+            return backButton;
+        }
+
+        private void Utilizatori_bt_Click(object sender, EventArgs e)
+        {
+            InitializeSideMenu();
+        }
+
+        private Panel sideMenuPanel;
+        private void InitializeSideMenu()
+        {
+            sideMenuPanel = new Panel
+            {
+                Width = 280,
+                Height = this.ClientSize.Height,
+                BackColor = Color.FromArgb(30, 30, 45),
+                Dock = DockStyle.Left,
+                Padding = new Padding(10)
+            };
+            this.Controls.Add(sideMenuPanel);
+
+            Label userName = new Label
+            {
+                Text = "Admin",
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                ForeColor = Color.WhiteSmoke,
+                TextAlign = ContentAlignment.MiddleCenter,
+                Width = sideMenuPanel.Width,
+                Location = new Point(0, 130)
+            };
+            sideMenuPanel.Controls.Add(userName);
+
+            string[] menuItems = { "Adăugare Utilizator", "Modificare Utilizator", "Ștergere Utilizator" };
+            string[] icons = { "➕", "✏️", "❌" };
+
+            int y = 180;
+            for (int i = 0; i < menuItems.Length; i++)
+            {
+                Button btn = new Button
+                {
+                    Text = icons[i] + "  " + menuItems[i],
+                    Height = 55,
+                    Width = 240,
+                    Location = new Point(15, y),
+                    BackColor = Color.FromArgb(50, 50, 70),
+                    ForeColor = Color.White,
+                    FlatStyle = FlatStyle.Flat,
+                    Font = new Font("Arial", 12, FontStyle.Bold),
+                    Cursor = Cursors.Hand,
+                    TextAlign = ContentAlignment.MiddleLeft,
+                    Padding = new Padding(10, 0, 0, 0)
+                };
+                btn.FlatAppearance.BorderSize = 0;
+                btn.MouseEnter += (s, e) => btn.BackColor = Color.FromArgb(70, 70, 100);
+                btn.MouseLeave += (s, e) => btn.BackColor = Color.FromArgb(50, 50, 70);
+                btn.Click += (s, e) => AfiseazaPanel(menuItems[i]);
+                sideMenuPanel.Controls.Add(btn);
+                y += 65;
+            }
+        }
+
+        // Metodă care afișează panoul potrivit pentru fiecare buton
+        private void AfiseazaPanel(string actiune)
+        {
+            // Șterge orice alt panou înainte de a-l crea pe cel nou
+            Panel panelExistent = this.Controls.OfType<Panel>().FirstOrDefault(p => p.Name == "panelActiune");
+            if (panelExistent != null) this.Controls.Remove(panelExistent);
+
+            // Creare panou acțiune
+            Panel panelActiune = new Panel
+            {
+                Name = "panelActiune",
+                Width = 400,
+                Height = 300,
+                BackColor = Color.FromArgb(210, 220, 250),
+                Location = new Point((this.ClientSize.Width - 400) / 2, (this.ClientSize.Height - 300) / 2),
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            this.Controls.Add(panelActiune);
+            panelActiune.BringToFront();
+
+            // Titlu pentru panou
+            Label lblTitlu = new Label
+            {
+                Text = actiune,
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                ForeColor = Color.Black,
+                AutoSize = true,
+                Location = new Point(20, 20)
+            };
+            panelActiune.Controls.Add(lblTitlu);
+
+            // Adaugă câmpurile necesare în funcție de acțiune
+            if (actiune == "Adăugare Utilizator")
+            {
+                AdaugaCampuriUtilizator(panelActiune, "Adaugă");
+            }
+            else if (actiune == "Modificare Utilizator")
+            {
+                AdaugaCampuriUtilizator(panelActiune, "Modifică");
+            }
+            else if (actiune == "Ștergere Utilizator")
+            {
+                AdaugaCampuriUtilizator(panelActiune, "Șterge", doarID: true);
+            }
+        }
+
+        // Metodă pentru adăugarea câmpurilor unui utilizator
+        private void AdaugaCampuriUtilizator(Panel panel, string butonText, bool doarID = false)
+        {
+            Font fontMare = new Font("Arial", 11, FontStyle.Bold);
+
+            // TextBox pentru ID Utilizator
+            Label lblID = new Label { Text = "ID Utilizator:", Location = new Point(20, 60), Font = fontMare, AutoSize = true };
+            TextBox txtID = new TextBox { Location = new Point(150, 55), Width = 200, Font = fontMare };
+            panel.Controls.Add(lblID);
+            panel.Controls.Add(txtID);
+
+            if (!doarID)
+            {
+                // TextBox pentru Nume Utilizator
+                Label lblNume = new Label { Text = "Nume:", Location = new Point(20, 100), Font = fontMare, AutoSize = true };
+                TextBox txtNume = new TextBox { Location = new Point(150, 95), Width = 200, Font = fontMare };
+                panel.Controls.Add(lblNume);
+                panel.Controls.Add(txtNume);
+
+                // TextBox pentru Parolă
+                Label lblParola = new Label { Text = "Parolă:", Location = new Point(20, 140), Font = fontMare, AutoSize = true };
+                TextBox txtParola = new TextBox { Location = new Point(150, 135), Width = 200, Font = fontMare, PasswordChar = '*' };
+                panel.Controls.Add(lblParola);
+                panel.Controls.Add(txtParola);
+            }
+
+            // Buton de acțiune
+            Button btnActiune = new Button
+            {
+                Text = butonText,
+                Location = new Point(120, 200),
+                Width = 160,
+                Height = 40,
+                Font = fontMare,
+                BackColor = Color.White,
+                ForeColor = Color.Black,
+                FlatStyle = FlatStyle.Flat
+            };
+            btnActiune.FlatAppearance.BorderSize = 2;
+            btnActiune.FlatAppearance.BorderColor = Color.White;
+            panel.Controls.Add(btnActiune);
+
+            // Adaugă funcționalitate butonului (temporar doar afișare mesaj)
+            btnActiune.Click += (s, ev) =>
+            {
+                MessageBox.Show($"{butonText} utilizator!");
+            };
+        }
+
+
+        private void Medici_bt_Click(object sender, EventArgs e)
+        {
+            HideButton();
+
+            // Elimină panourile existente pentru a evita suprapunerea
+            foreach (var panel in this.Controls.OfType<Panel>().ToList())
+            {
+                this.Controls.Remove(panel);
+            }
+
+            // Creare panou meniu pentru Medici
+            Panel panelMedici = new Panel
+            {
+                Width = 250,
+                Height = 220,
+                BackColor = Color.FromArgb(112, 150, 209),
+                Location = new Point(20, (this.ClientSize.Height - 220) / 2)
+            };
+            this.Controls.Add(panelMedici);
+
+            // Titlu
+            Label lblTitlu = new Label
+            {
+                Text = "Gestionare Medici",
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Top,
+                Height = 40
+            };
+            panelMedici.Controls.Add(lblTitlu);
+
+            // Butoane pentru acțiuni
+            string[] butoaneText = { "Adăugare Medic", "Modificare Medic", "Ștergere Medic" };
+            int y = 50;
+            foreach (string text in butoaneText)
+            {
+                Button btn = new Button
+                {
+                    Text = text,
+                    Height = 40,
+                    Width = 200,
+                    Location = new Point((panelMedici.Width - 200) / 2, y),
+                    BackColor = Color.FromArgb(231, 241, 255)
+                };
+
+                panelMedici.Controls.Add(btn);
+                y += 50;
+
+                // Adaugă eveniment pentru fiecare buton
+                btn.Click += (s, ev) => AfiseazaPanelMedic(text);
+            }
+            this.Controls.Add(CreateBackButton());
+        }
+
+        // Metodă care afișează panoul potrivit pentru fiecare acțiune
+        private void AfiseazaPanelMedic(string actiune)
+        {
+            // Șterge orice alt panou înainte de a-l crea pe cel nou
+            Panel panelExistent = this.Controls.OfType<Panel>().FirstOrDefault(p => p.Name == "panelActiuneMedic");
+            if (panelExistent != null) this.Controls.Remove(panelExistent);
+
+            // Creare panou acțiune
+            Panel panelActiune = new Panel
+            {
+                Name = "panelActiuneMedic",
+                Width = 400,
+                Height = 300,
+                BackColor = Color.FromArgb(210, 220, 250),
+                Location = new Point((this.ClientSize.Width - 400) / 2, (this.ClientSize.Height - 300) / 2),
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            this.Controls.Add(panelActiune);
+            panelActiune.BringToFront();
+
+            // Titlu pentru panou
+            Label lblTitlu = new Label
+            {
+                Text = actiune,
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                ForeColor = Color.Black,
+                AutoSize = true,
+                Location = new Point(20, 20)
+            };
+            panelActiune.Controls.Add(lblTitlu);
+
+            // Adaugă câmpurile necesare în funcție de acțiune
+            if (actiune == "Adăugare Medic")
+            {
+                AdaugaCampuriMedic(panelActiune, "Adaugă");
+            }
+            else if (actiune == "Modificare Medic")
+            {
+                AdaugaCampuriMedic(panelActiune, "Modifică");
+            }
+            else if (actiune == "Ștergere Medic")
+            {
+                AdaugaCampuriMedic(panelActiune, "Șterge", doarID: true);
+            }
+        }
+
+        // Metodă pentru adăugarea câmpurilor unui medic
+        private void AdaugaCampuriMedic(Panel panel, string butonText, bool doarID = false)
+        {
+            Font fontMare = new Font("Arial", 11, FontStyle.Bold);
+
+            // TextBox pentru ID Medic
+            Label lblID = new Label { Text = "ID Medic:", Location = new Point(20, 60), Font = fontMare, AutoSize = true };
+            TextBox txtID = new TextBox { Location = new Point(150, 55), Width = 200, Font = fontMare };
+            panel.Controls.Add(lblID);
+            panel.Controls.Add(txtID);
+
+            if (!doarID)
+            {
+                // TextBox pentru Nume Medic
+                Label lblNume = new Label { Text = "Nume:", Location = new Point(20, 100), Font = fontMare, AutoSize = true };
+                TextBox txtNume = new TextBox { Location = new Point(150, 95), Width = 200, Font = fontMare };
+                panel.Controls.Add(lblNume);
+                panel.Controls.Add(txtNume);
+
+                // TextBox pentru Specializare
+                Label lblSpecializare = new Label { Text = "Specializare:", Location = new Point(20, 140), Font = fontMare, AutoSize = true };
+                TextBox txtSpecializare = new TextBox { Location = new Point(150, 135), Width = 200, Font = fontMare };
+                panel.Controls.Add(lblSpecializare);
+                panel.Controls.Add(txtSpecializare);
+            }
+
+            // Buton de acțiune
+            Button btnActiune = new Button
+            {
+                Text = butonText,
+                Location = new Point(120, 200),
+                Width = 160,
+                Height = 40,
+                Font = fontMare,
+                BackColor = Color.White,
+                ForeColor = Color.Black,
+                FlatStyle = FlatStyle.Flat
+            };
+            btnActiune.FlatAppearance.BorderSize = 2;
+            btnActiune.FlatAppearance.BorderColor = Color.White;
+            panel.Controls.Add(btnActiune);
+
+            // Adaugă funcționalitate butonului (temporar doar afișare mesaj)
+            btnActiune.Click += (s, ev) =>
+            {
+                MessageBox.Show($"{butonText} medic!");
+            };
+        }
+
+
+
+        private void Filiale_bt_Click_1(object sender, EventArgs e)
+        {
+            HideButton();
+
+            // Elimină panourile existente pentru a evita suprapunerea
+            foreach (var panel in this.Controls.OfType<Panel>().ToList())
+            {
+                this.Controls.Remove(panel);
+            }
+
+            // Creare panou meniu pentru Filiale
+            Panel panelFiliale = new Panel
+            {
+                Width = 250,
+                Height = 220,
+                BackColor = Color.FromArgb(112, 150, 209),
+                Location = new Point(20, (this.ClientSize.Height - 220) / 2)
+            };
+            this.Controls.Add(panelFiliale);
+
+            // Titlu
+            Label lblTitlu = new Label
+            {
+                Text = "Gestionare Filiale",
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Top,
+                Height = 40
+            };
+            panelFiliale.Controls.Add(lblTitlu);
+
+            // Butoane pentru acțiuni
+            string[] butoaneText = { "Adăugare Filială", "Modificare Filială", "Ștergere Filială" };
+            int y = 50;
+            foreach (string text in butoaneText)
+            {
+                Button btn = new Button
+                {
+                    Text = text,
+                    Height = 40,
+                    Width = 200,
+                    Location = new Point((panelFiliale.Width - 200) / 2, y),
+                    BackColor = Color.FromArgb(231, 241, 255)
+                };
+
+                panelFiliale.Controls.Add(btn);
+                y += 50;
+
+                // Adaugă eveniment pentru fiecare buton
+                btn.Click += (s, ev) => AfiseazaPanelFiliala(text);
+            }
+            this.Controls.Add(CreateBackButton());
+        }
+
+        // Metodă care afișează panoul potrivit pentru fiecare acțiune
+        private void AfiseazaPanelFiliala(string actiune)
+        {
+            // Șterge orice alt panou înainte de a-l crea pe cel nou
+            Panel panelExistent = this.Controls.OfType<Panel>().FirstOrDefault(p => p.Name == "panelActiuneFiliala");
+            if (panelExistent != null) this.Controls.Remove(panelExistent);
+
+            // Creare panou acțiune
+            Panel panelActiune = new Panel
+            {
+                Name = "panelActiuneFiliala",
+                Width = 400,
+                Height = 300,
+                BackColor = Color.FromArgb(210, 220, 250),
+                Location = new Point((this.ClientSize.Width - 400) / 2, (this.ClientSize.Height - 300) / 2),
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            this.Controls.Add(panelActiune);
+            panelActiune.BringToFront();
+
+            // Titlu pentru panou
+            Label lblTitlu = new Label
+            {
+                Text = actiune,
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                ForeColor = Color.Black,
+                AutoSize = true,
+                Location = new Point(20, 20)
+            };
+            panelActiune.Controls.Add(lblTitlu);
+
+            // Adaugă câmpurile necesare în funcție de acțiune
+            if (actiune == "Adăugare Filială")
+            {
+                AdaugaCampuriFiliala(panelActiune, "Adaugă");
+            }
+            else if (actiune == "Modificare Filială")
+            {
+                AdaugaCampuriFiliala(panelActiune, "Modifică");
+            }
+            else if (actiune == "Ștergere Filială")
+            {
+                AdaugaCampuriFiliala(panelActiune, "Șterge", doarID: true);
+            }
+        }
+
+        // Metodă pentru adăugarea câmpurilor unei filiale
+        private void AdaugaCampuriFiliala(Panel panel, string butonText, bool doarID = false)
+        {
+            Font fontMare = new Font("Arial", 11, FontStyle.Bold);
+
+            // TextBox pentru ID Filială
+            Label lblID = new Label { Text = "ID Filială:", Location = new Point(20, 60), Font = fontMare, AutoSize = true };
+            TextBox txtID = new TextBox { Location = new Point(150, 55), Width = 200, Font = fontMare };
+            panel.Controls.Add(lblID);
+            panel.Controls.Add(txtID);
+
+            if (!doarID)
+            {
+                // TextBox pentru Nume Filială
+                Label lblNume = new Label { Text = "Nume:", Location = new Point(20, 100), Font = fontMare, AutoSize = true };
+                TextBox txtNume = new TextBox { Location = new Point(150, 95), Width = 200, Font = fontMare };
+                panel.Controls.Add(lblNume);
+                panel.Controls.Add(txtNume);
+
+                // TextBox pentru Adresă Filială
+                Label lblAdresa = new Label { Text = "Adresă:", Location = new Point(20, 140), Font = fontMare, AutoSize = true };
+                TextBox txtAdresa = new TextBox { Location = new Point(150, 135), Width = 200, Font = fontMare };
+                panel.Controls.Add(lblAdresa);
+                panel.Controls.Add(txtAdresa);
+            }
+
+            // Buton de acțiune
+            Button btnActiune = new Button
+            {
+                Text = butonText,
+                Location = new Point(120, 200),
+                Width = 160,
+                Height = 40,
+                Font = fontMare,
+                BackColor = Color.White,
+                ForeColor = Color.Black,
+                FlatStyle = FlatStyle.Flat
+            };
+            btnActiune.FlatAppearance.BorderSize = 2;
+            btnActiune.FlatAppearance.BorderColor = Color.White;
+            panel.Controls.Add(btnActiune);
+
+            // Adaugă funcționalitate butonului (temporar doar afișare mesaj)
+            btnActiune.Click += (s, ev) =>
+            {
+                MessageBox.Show($"{butonText} filială!");
+            };
+        }
+
+
+        private void BR_bt_Click(object sender, EventArgs e)
+        {
+            HideButton();
+
+            // Creare panou Backup & Restore
+            Panel panelBR = new Panel
+            {
+                Width = 250,
+                Height = 150,
+                BackColor = Color.FromArgb(112, 150, 209),
+                Location = new Point((this.ClientSize.Width - 250) / 2, 100)
+            };
+            this.Controls.Add(panelBR);
+
+            // Titlu
+            Label lblTitlu = new Label
+            {
+                Text = "Backup & Restore",
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Top,
+                Height = 40
+            };
+            panelBR.Controls.Add(lblTitlu);
+
+            // Buton Backup
+            Button btnBackup = new Button
+            {
+                Text = "Backup",
+                Height = 40,
+                Width = 180,
+                Location = new Point((panelBR.Width - 180) / 2, 50),
+                BackColor = Color.FromArgb(231, 241, 255)
+            };
+            btnBackup.Click += BtnBackup_Click;
+            panelBR.Controls.Add(btnBackup);
+
+            // Buton Restore
+            Button btnRestore = new Button
+            {
+                Text = "Restore",
+                Height = 40,
+                Width = 180,
+                Location = new Point((panelBR.Width - 180) / 2, 100),
+                BackColor = Color.FromArgb(231, 241, 255)
+            };
+            btnRestore.Click += BtnRestore_Click;
+            btnRestore.MouseEnter += Buton_MouseEnter;
+            btnRestore.MouseLeave += Buton_MouseLeave;
+            panelBR.Controls.Add(btnRestore);
+
+            // Buton Înapoi
+            this.Controls.Add(CreateBackButton());
+        }
+
+        // Metodă pentru Backup
+        private void BtnBackup_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Funcția de backup va fi implementată aici.");
+        }
+
+        // Metodă pentru Restore
+        private void BtnRestore_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Funcția de restore va fi implementată aici.");
+        }
+
+
+        private void Acces_bt_Click(object sender, EventArgs e)
+        {
+            HideButton();
+
+            // Elimină panourile existente pentru a evita suprapunerea
+            foreach (var panel in this.Controls.OfType<Panel>().ToList())
+            {
+                this.Controls.Remove(panel);
+            }
+
+            // Creare panou meniu pentru Drepturi
+            Panel panelDrepturi = new Panel
+            {
+                Width = 250,
+                Height = 220,
+                BackColor = Color.FromArgb(112, 150, 209),
+                Location = new Point(20, (this.ClientSize.Height - 220) / 2)
+            };
+            this.Controls.Add(panelDrepturi);
+
+            // Titlu
+            Label lblTitlu = new Label
+            {
+                Text = "Gestionare Drepturi",
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                TextAlign = ContentAlignment.MiddleCenter,
+                Dock = DockStyle.Top,
+                Height = 40
+            };
+            panelDrepturi.Controls.Add(lblTitlu);
+
+            // Butoane pentru acțiuni
+            string[] butoaneText = { "Adăugare Drepturi", "Modificare Drepturi", "Ștergere Drepturi" };
+            int y = 50;
+            foreach (string text in butoaneText)
+            {
+                Button btn = new Button
+                {
+                    Text = text,
+                    Height = 40,
+                    Width = 200,
+                    Location = new Point((panelDrepturi.Width - 200) / 2, y),
+                    BackColor = Color.FromArgb(231, 241, 255)
+                };
+
+                panelDrepturi.Controls.Add(btn);
+                y += 50;
+
+                // Adaugă eveniment pentru fiecare buton
+                btn.Click += (s, ev) => AfiseazaPanelDrepturi(text);
+            }
+            this.Controls.Add(CreateBackButton());
+        }
+
+        // Metodă care afișează panoul potrivit pentru fiecare acțiune
+        private void AfiseazaPanelDrepturi(string actiune)
+        {
+            // Șterge orice alt panou înainte de a-l crea pe cel nou
+            Panel panelExistent = this.Controls.OfType<Panel>().FirstOrDefault(p => p.Name == "panelActiuneDrepturi");
+            if (panelExistent != null) this.Controls.Remove(panelExistent);
+
+            // Creare panou acțiune
+            Panel panelActiune = new Panel
+            {
+                Name = "panelActiuneDrepturi",
+                Width = 400,
+                Height = 300,
+                BackColor = Color.FromArgb(210, 220, 250),
+                Location = new Point((this.ClientSize.Width - 400) / 2, (this.ClientSize.Height - 300) / 2),
+                BorderStyle = BorderStyle.FixedSingle
+            };
+            this.Controls.Add(panelActiune);
+            panelActiune.BringToFront();
+
+            // Titlu pentru panou
+            Label lblTitlu = new Label
+            {
+                Text = actiune,
+                Font = new Font("Arial", 14, FontStyle.Bold),
+                ForeColor = Color.Black,
+                AutoSize = true,
+                Location = new Point(20, 20)
+            };
+            panelActiune.Controls.Add(lblTitlu);
+
+            // Adaugă câmpurile necesare în funcție de acțiune
+            AdaugaCampuriDrepturi(panelActiune, actiune);
+        }
+
+        // Metodă pentru adăugarea câmpurilor
+        private void AdaugaCampuriDrepturi(Panel panel, string actiune)
+        {
+            Font fontMare = new Font("Arial", 11, FontStyle.Bold);
+
+            // Label și ComboBox pentru selecția utilizatorului
+            Label lblUtilizator = new Label { Text = "Utilizator:", Location = new Point(20, 60), Font = fontMare, AutoSize = true };
+            ComboBox cbUtilizatori = new ComboBox { Location = new Point(150, 55), Width = 200, Font = fontMare };
+
+            // Exemplu de populare cu utilizatori (în realitate, trebuie luați din baza de date)
+            cbUtilizatori.Items.AddRange(new string[] { "User1", "User2", "User3" });
+
+            panel.Controls.Add(lblUtilizator);
+            panel.Controls.Add(cbUtilizatori);
+
+            if (actiune != "Ștergere Drepturi")
+            {
+                // Label și TextBox pentru drepturi
+                Label lblDrepturi = new Label { Text = "Drepturi:", Location = new Point(20, 100), Font = fontMare, AutoSize = true };
+                TextBox txtDrepturi = new TextBox { Location = new Point(150, 95), Width = 200, Font = fontMare };
+                panel.Controls.Add(lblDrepturi);
+                panel.Controls.Add(txtDrepturi);
+            }
+
+            // Buton de acțiune
+            Button btnActiune = new Button
+            {
+                Text = actiune,
+                Location = new Point(120, 200),
+                Width = 160,
+                Height = 40,
+                Font = fontMare,
+                BackColor = Color.White,
+                ForeColor = Color.Black,
+                FlatStyle = FlatStyle.Flat
+            };
+            btnActiune.FlatAppearance.BorderSize = 2;
+            btnActiune.FlatAppearance.BorderColor = Color.White;
+            panel.Controls.Add(btnActiune);
+
+            // Adaugă funcționalitate butonului (temporar doar afișare mesaj)
+            btnActiune.Click += (s, ev) =>
+            {
+                MessageBox.Show($"{actiune} pentru {cbUtilizatori.SelectedItem}");
+            };
+
+        }
+    }
+}
+

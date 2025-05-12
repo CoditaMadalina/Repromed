@@ -1,0 +1,138 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|d:\\madi\\asist. bd\\anul 3\\programare vizuala\\studiu_individual_2\\reports\\appointmentstatus.rdlc||{46F6D2A1-5E86-4080-A799-01F3D0E23796}",
+      "RelativeMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|solutionrelative:reports\\appointmentstatus.rdlc||{46F6D2A1-5E86-4080-A799-01F3D0E23796}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|d:\\madi\\asist. bd\\anul 3\\programare vizuala\\studiu_individual_2\\adminmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|solutionrelative:adminmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{000EBAF1-EC65-4F13-BEF2-8919228DDEB8}|..\\..\\Report Programari AnulateConfirmate\\Report Project2.rptproj|D:\\Madi\\Asist. BD\\anul 3\\Report Programari AnulateConfirmate\\ReportProgramari.rdl||{420F4200-DD61-4785-81F3-52669CBC208E}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|d:\\madi\\asist. bd\\anul 3\\programare vizuala\\studiu_individual_2\\receptionistmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|solutionrelative:receptionistmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|d:\\madi\\asist. bd\\anul 3\\programare vizuala\\studiu_individual_2\\reports\\appointmentsbybranch.rdlc||{46F6D2A1-5E86-4080-A799-01F3D0E23796}",
+      "RelativeMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|solutionrelative:reports\\appointmentsbybranch.rdlc||{46F6D2A1-5E86-4080-A799-01F3D0E23796}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\medicmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|solutionrelative:medicmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\receptionistmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CD62B491-546E-4077-A644-3B55A81CC3F1}|Studiu_Individual_1.csproj|solutionrelative:receptionistmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppointmentStatus.rdlc [Design]",
+              "DocumentMoniker": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\Reports\\AppointmentStatus.rdlc",
+              "RelativeDocumentMoniker": "Reports\\AppointmentStatus.rdlc",
+              "ToolTip": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\Reports\\AppointmentStatus.rdlc [Design]",
+              "RelativeToolTip": "Reports\\AppointmentStatus.rdlc [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001755|",
+              "WhenOpened": "2025-05-06T18:51:28.562Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AppointmentsByBranch.rdlc [Design]",
+              "DocumentMoniker": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\Reports\\AppointmentsByBranch.rdlc",
+              "RelativeDocumentMoniker": "Reports\\AppointmentsByBranch.rdlc",
+              "ToolTip": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\Reports\\AppointmentsByBranch.rdlc [Design]",
+              "RelativeToolTip": "Reports\\AppointmentsByBranch.rdlc [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001755|",
+              "WhenOpened": "2025-05-06T18:51:11.639Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ReportProgramari.rdl [Design]",
+              "DocumentMoniker": "D:\\Madi\\Asist. BD\\anul 3\\Report Programari AnulateConfirmate\\ReportProgramari.rdl",
+              "RelativeDocumentMoniker": "..\\..\\Report Programari AnulateConfirmate\\ReportProgramari.rdl",
+              "ToolTip": "D:\\Madi\\Asist. BD\\anul 3\\Report Programari AnulateConfirmate\\ReportProgramari.rdl [Design]",
+              "RelativeToolTip": "..\\..\\Report Programari AnulateConfirmate\\ReportProgramari.rdl [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-06T18:00:23.126Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReceptionistMenu.cs [Design]",
+              "DocumentMoniker": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\ReceptionistMenu.cs",
+              "RelativeDocumentMoniker": "ReceptionistMenu.cs",
+              "ToolTip": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\ReceptionistMenu.cs [Design]",
+              "RelativeToolTip": "ReceptionistMenu.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T17:59:03.763Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MedicMenu.cs",
+              "DocumentMoniker": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\MedicMenu.cs",
+              "RelativeDocumentMoniker": "MedicMenu.cs",
+              "ToolTip": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\MedicMenu.cs",
+              "RelativeToolTip": "MedicMenu.cs",
+              "ViewState": "AgIAAG4BAAAAAAAAAAAYwIABAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-19T11:17:02.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ReceptionistMenu.cs",
+              "DocumentMoniker": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\ReceptionistMenu.cs",
+              "RelativeDocumentMoniker": "ReceptionistMenu.cs",
+              "ToolTip": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\ReceptionistMenu.cs",
+              "RelativeToolTip": "ReceptionistMenu.cs",
+              "ViewState": "AgIAAKsDAAAAAAAAAAAmwMEDAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-17T18:34:15.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AdminMenu.cs",
+              "DocumentMoniker": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\AdminMenu.cs",
+              "RelativeDocumentMoniker": "AdminMenu.cs",
+              "ToolTip": "D:\\Madi\\Asist. BD\\anul 3\\Programare Vizuala\\Studiu_Individual_2\\AdminMenu.cs",
+              "RelativeToolTip": "AdminMenu.cs",
+              "ViewState": "AgIAADsBAAAAAAAAAAAswGgBAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-16T18:19:15.806Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
